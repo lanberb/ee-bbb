@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { type FC, useCallback } from "react";
 import { useGlobalCanvas } from "@/hooks/useGlobalCanvas";
 import { useTheme } from "@/hooks/useTheme";
-import { useGlobalStore } from "@/state/useGlobalStore";
+import { useGlobalStore } from "@/hooks/useGlobalStore";
 import { getSurfaceColor } from "@/util/canvas";
 import { GlobalCanvasNavigatorItem } from "./internals/GlobalCanvasNavigatorItem";
 

@@ -2,8 +2,8 @@ import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { createContext, type FC, type PropsWithChildren, useCallback, useContext, useEffect } from "react";
 import { PrefersColorScheme } from "@/components/styles/media";
 import { type ThemeMode, type ThemeState, themeKeyMap } from "@/components/styles/theme";
-import { useThemeStore } from "@/state/useThemeStore";
 import { getIsBrowser } from "@/util/app";
+import { useGlobalStore } from "@/hooks/useGlobalStore";
 
 const ThemeStateContext = createContext<ThemeState | null>(null);
 
@@ -15,7 +15,7 @@ const getSystemThemeMode = (): ThemeMode => {
 };
 
 export const ThemeStateProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { themeMode: persistedThemeMode, setThemeMode } = useThemeStore();
+  const { themeMode: persistedThemeMode, setThemeMode } = useGlobalStore();
 
   const systemThemeMode = getSystemThemeMode();
   const themeMode = persistedThemeMode ?? systemThemeMode;

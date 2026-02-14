@@ -5,11 +5,11 @@ import RotateTextStickerImage from "@/assets/images/stickers/rotate_text.png";
 import StarLikeStickerImage from "@/assets/images/stickers/star_like.png";
 import StreetPaintStickerImage from "@/assets/images/stickers/street_paint.png";
 import { PageLayout } from "@/components/modules/PageLayout";
-import { useListImage } from "@/domain/useListImages";
+import { useListImage } from "@/hooks/useListImages";
 import { useGlobalCanvas } from "@/hooks/useGlobalCanvas";
 import { useInertia } from "@/hooks/useGlobalCanvas/internals/useInertia";
 import { useTheme } from "@/hooks/useTheme";
-import { useGlobalStore } from "@/state/useGlobalStore";
+import { useGlobalStore } from "@/hooks/useGlobalStore";
 import { getMobileFullWidthWithMargin, getSurfaceColor, isMobile } from "@/util/canvas";
 
 const STICKER_SETTING_LIST = [
@@ -150,7 +150,7 @@ export const Page: FC = () => {
       handleOnOpeningAnimationComplete,
     );
   }, [
-    themeState,
+    // themeState,
     expandChromStickerImage.data,
     earthLogoStickerImage.data,
     streetPaintStickerImage.data,

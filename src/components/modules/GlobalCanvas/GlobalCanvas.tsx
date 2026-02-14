@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import type { FC } from "react";
 import { type BaseProps, base } from "@/components/styles/mixins";
 import { useGlobalCanvas } from "@/hooks/useGlobalCanvas";
-import { useGlobalStore } from "@/state/useGlobalStore";
+import { useGlobalStore } from "@/hooks/useGlobalStore";
 
 const grabbableStyle = css`
   cursor: grab;

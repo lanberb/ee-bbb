@@ -1,11 +1,11 @@
 import { type FC, useCallback } from "react";
 import { Box } from "@/components/unit/Box";
 import { Stack, StackItem } from "@/components/unit/Stack";
-import { useDialogStore } from "@/state/useDialogStore";
 import { Dialog } from "../../unit/Dialog";
+import { useGlobalStore } from "@/hooks/useGlobalStore";
 
 export const GlobalFootprintDialog: FC = () => {
-  const dialogStore = useDialogStore();
+  const dialogStore = useGlobalStore();
 
   const handleOnRequestClose = useCallback(() => {
     dialogStore.closeCreateStickerDialog();
