@@ -1,9 +1,9 @@
 import { type FC, useEffect } from "react";
-import { BlogList } from "@/components/modules/BlogList";
-import { PageLayout } from "@/components/modules/PageLayout";
-import { useGlobalCanvas } from "@/hooks/useGlobalCanvas";
-import { useTheme } from "@/hooks/useTheme";
-import { getSurfaceColor } from "@/util/canvas";
+import { BlogList } from '../../modules/BlogList';
+import { PageLayout } from '../../modules/PageLayout';
+import { useGlobalCanvas } from '../../../hooks/useGlobalCanvas';
+import { useTheme } from '../../../hooks/useTheme';
+import { getSurfaceColor } from '../../../util/canvas';
 
 export const Page: FC = () => {
   const theme = useTheme();

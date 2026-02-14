@@ -1,5 +1,5 @@
 import { createContext, type FC, type PropsWithChildren, useCallback, useContext, useEffect, useState } from "react";
-import { type LocaleKey, localeKeyMap } from "@/util/i18n/localize";
+import { type LocaleKey, localeKeyMap } from '../util/i18n/localize';
 
 const getInitialLang = (): LocaleKey => {
   // 1) HTML の lang 属性

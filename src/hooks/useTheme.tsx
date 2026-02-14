@@ -1,9 +1,9 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { createContext, type FC, type PropsWithChildren, useCallback, useContext, useEffect } from "react";
-import { PrefersColorScheme } from "@/components/styles/media";
-import { type ThemeMode, type ThemeState, themeKeyMap } from "@/components/styles/theme";
-import { getIsBrowser } from "@/util/app";
-import { useGlobalStore } from "@/hooks/useGlobalStore";
+import { PrefersColorScheme } from '../components/styles/media';
+import { type ThemeMode, type ThemeState, themeKeyMap } from '../components/styles/theme';
+import { getIsBrowser } from '../util/app';
+import { useGlobalStore } from './useGlobalStore';
 
 const ThemeStateContext = createContext<ThemeState | null>(null);
 

@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
 import { type CSSProperties, type FC, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { SegmentControl } from "@/components/modules/SegmentControl";
-import { MediaQuery } from "@/components/styles/media";
-import { GLOBAL_TRANSITION_DURATION, type TransitionProps, transition } from "@/components/styles/mixins/transition";
-import type { ThemeMode } from "@/components/styles/theme";
-import { Box } from "@/components/unit/Box";
-import { Icon } from "@/components/unit/Icon";
-import { Link } from "@/components/unit/Link";
-import { Stack } from "@/components/unit/Stack";
-import { useI18n } from "@/hooks/useI18n";
-import { useTheme } from "@/hooks/useTheme";
-import type { LocaleKey } from "@/util/i18n/localize";
-import { routes } from "@/util/routes";
+import { SegmentControl } from '../SegmentControl';
+import { MediaQuery } from '../../styles/media';
+import { GLOBAL_TRANSITION_DURATION, type TransitionProps, transition } from '../../styles/mixins/transition';
+import type { ThemeMode } from '../../styles/theme';
+import { Box } from '../../unit/Box';
+import { Icon } from '../../unit/Icon';
+import { Link } from '../../unit/Link';
+import { Stack } from '../../unit/Stack';
+import { useI18n } from '../../../hooks/useI18n';
+import { useTheme } from '../../../hooks/useTheme';
+import type { LocaleKey } from '../../../util/i18n/localize';
+import { routes } from '../../../util/routes';
 
 const navKeys: (keyof typeof routes)[] = ["top", "blog"];
 

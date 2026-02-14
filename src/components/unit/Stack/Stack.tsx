@@ -13,7 +13,7 @@ import {
   type StackProps,
   stack,
   stackItem,
-} from "@/components/styles/mixins";
+} from '../../styles/mixins';
 
 interface Props extends BaseProps, MarginProps, PaddingProps, BorderProps, StackProps {
   as?: keyof JSX.IntrinsicElements;

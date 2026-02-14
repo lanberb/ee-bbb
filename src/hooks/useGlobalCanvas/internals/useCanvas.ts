@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { getIsBrowser } from "@/util/app";
+import { getIsBrowser } from '../../../util/app';
 
 // 高精細にするため2倍サイズで描画する
 const DEVICE_PIXEL_RATIO = (getIsBrowser() ? window.devicePixelRatio || 1 : 1) * 2;

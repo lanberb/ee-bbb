@@ -1,16 +1,16 @@
 import { type FC, useCallback, useEffect } from "react";
-import EarthLogoStickerImage from "@/assets/images/stickers/earth_logo.png";
-import ExpandChromStickerImage from "@/assets/images/stickers/expand_chrom.png";
-import RotateTextStickerImage from "@/assets/images/stickers/rotate_text.png";
-import StarLikeStickerImage from "@/assets/images/stickers/star_like.png";
-import StreetPaintStickerImage from "@/assets/images/stickers/street_paint.png";
-import { PageLayout } from "@/components/modules/PageLayout";
-import { useListImage } from "@/hooks/useListImages";
-import { useGlobalCanvas } from "@/hooks/useGlobalCanvas";
-import { useInertia } from "@/hooks/useGlobalCanvas/internals/useInertia";
-import { useTheme } from "@/hooks/useTheme";
-import { useGlobalStore } from "@/hooks/useGlobalStore";
-import { getMobileFullWidthWithMargin, getSurfaceColor, isMobile } from "@/util/canvas";
+import EarthLogoStickerImage from '../../../assets/images/stickers/earth_logo.png';
+import ExpandChromStickerImage from '../../../assets/images/stickers/expand_chrom.png';
+import RotateTextStickerImage from '../../../assets/images/stickers/rotate_text.png';
+import StarLikeStickerImage from '../../../assets/images/stickers/star_like.png';
+import StreetPaintStickerImage from '../../../assets/images/stickers/street_paint.png';
+import { PageLayout } from '../../modules/PageLayout';
+import { useListImage } from '../../../hooks/useListImages';
+import { useGlobalCanvas } from '../../../hooks/useGlobalCanvas';
+import { useInertia } from '../../../hooks/useGlobalCanvas/internals/useInertia';
+import { useTheme } from '../../../hooks/useTheme';
+import { useGlobalStore } from '../../../hooks/useGlobalStore';
+import { getMobileFullWidthWithMargin, getSurfaceColor, isMobile } from '../../../util/canvas';
 
 const STICKER_SETTING_LIST = [
   {

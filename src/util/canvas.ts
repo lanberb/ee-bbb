@@ -1,5 +1,5 @@
-import { MediaQuery, PrefersReducedMotion } from "@/components/styles/media";
-import type { Theme, ThemeState } from "@/components/styles/theme";
+import { MediaQuery, PrefersReducedMotion } from '../components/styles/media';
+import type { Theme, ThemeState } from '../components/styles/theme';
 import { getIsBrowser } from "./app";
 
 interface Size {

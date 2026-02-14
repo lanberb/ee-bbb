@@ -1,8 +1,8 @@
 import { type FC, useCallback } from "react";
-import { Box } from "@/components/unit/Box";
-import { Stack, StackItem } from "@/components/unit/Stack";
+import { Box } from '../../unit/Box';
+import { Stack, StackItem } from '../../unit/Stack';
 import { Dialog } from "../../unit/Dialog";
-import { useGlobalStore } from "@/hooks/useGlobalStore";
+import { useGlobalStore } from '../../../hooks/useGlobalStore';
 
 export const GlobalFootprintDialog: FC = () => {
   const dialogStore = useGlobalStore();

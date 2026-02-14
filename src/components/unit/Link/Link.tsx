@@ -10,8 +10,8 @@ import {
   paddings,
   type TypographyProps,
   typography,
-} from "@/components/styles/mixins";
-import { protocol } from "@/util/routes";
+} from '../../styles/mixins';
+import { protocol } from '../../../util/routes';
 import { Text } from "../Text";
 
 interface Props extends TypographyProps, BaseProps, MarginProps, PaddingProps {
