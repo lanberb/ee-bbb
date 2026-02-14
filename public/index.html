@@ -23,6 +23,12 @@
     <div id="root"></div>
     <div id="icons" style="display: none;"></div>
     <div id="filters" style="display: none;"></div>
-    <script type="module" src="/src/client.tsx"></script>
+		<script>
+			fetch('/message')
+				.then((resp) => resp.text())
+				.then((text) => {
+          console.log(text);
+				});
+		</script>
   </body>
 </html>

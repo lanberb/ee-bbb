@@ -1,5 +1,5 @@
 import { hydrateRoot } from "react-dom/client";
-import App from "@/components/app/App.tsx";
+import App from "./components/app/App.tsx";
 
 const main = () => {
   const root = document.querySelector("#root");

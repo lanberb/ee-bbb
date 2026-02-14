@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "pnpm run build && vite preview",
     "lint": "biome check --write ./src",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -36,6 +38,7 @@
     "@vitejs/plugin-react": "^5.0.3",
     "globals": "^16.4.0",
     "typescript": "~5.8.3",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+		"wrangler": "^4.65.0"
   }
 }
