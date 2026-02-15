@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import { getIsBrowser } from '../../../util/app';
 
 // 高精細にするため2倍サイズで描画する
-const DEVICE_PIXEL_RATIO = (getIsBrowser() ? window.devicePixelRatio || 1 : 1) * 2;
+const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+const DEVICE_PIXEL_RATIO = dpr * 2;
 
 interface Return {
   el: HTMLCanvasElement | null;

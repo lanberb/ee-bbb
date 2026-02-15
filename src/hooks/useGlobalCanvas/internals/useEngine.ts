@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFacade } from '../../../canvas';
+import { createFacade } from "../../../canvas";
 
 export const useEngine = (context2d: CanvasRenderingContext2D | null) => {
   const [facade, setFacade] = useState<ReturnType<typeof createFacade> | null>(null);

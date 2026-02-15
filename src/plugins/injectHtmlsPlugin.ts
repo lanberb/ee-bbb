@@ -1,7 +1,7 @@
-import type { PluginOption } from "vite";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { JSDOM } from "jsdom";
+import type { PluginOption } from "vite";
 
 export const injectHtmlsPlugin = (): PluginOption => {
   return {
@@ -10,11 +10,13 @@ export const injectHtmlsPlugin = (): PluginOption => {
       const DOM = new JSDOM(html);
 
       // icons
-      await (async() => {
+      await (async () => {
         const iconsDir = path.resolve(__dirname, "../assets/images/icons/");
         const iconImageNames = fs.readdirSync(iconsDir);
 
-        const tasks = iconImageNames.map((iconImageName) => fs.readFileSync(path.resolve(iconsDir, iconImageName), "utf-8"));
+        const tasks = iconImageNames.map((iconImageName) =>
+          fs.readFileSync(path.resolve(iconsDir, iconImageName), "utf-8"),
+        );
         const iconHtmlString = (await Promise.all(tasks)).join("").replace(/\n/g, "");
 
         const iconsContainer = DOM.window.document.querySelector("#icons");
@@ -24,11 +26,13 @@ export const injectHtmlsPlugin = (): PluginOption => {
       })();
 
       // filters
-      await (async() => {
+      await (async () => {
         const filtersDir = path.resolve(__dirname, "../assets/filters/");
         const filterImageNames = fs.readdirSync(filtersDir);
 
-        const tasks = filterImageNames.map((filterImageName) => fs.readFileSync(path.resolve(filtersDir, filterImageName), "utf-8"));
+        const tasks = filterImageNames.map((filterImageName) =>
+          fs.readFileSync(path.resolve(filtersDir, filterImageName), "utf-8"),
+        );
         const filterHtmlString = (await Promise.all(tasks)).join("").replace(/\n/g, "");
 
         const filtersContainer = DOM.window.document.querySelector("#filters");

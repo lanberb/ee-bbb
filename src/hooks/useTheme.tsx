@@ -1,13 +1,15 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { createContext, type FC, type PropsWithChildren, useCallback, useContext, useEffect } from "react";
-import { PrefersColorScheme } from '../components/styles/media';
-import { type ThemeMode, type ThemeState, themeKeyMap } from '../components/styles/theme';
-import { getIsBrowser } from '../util/app';
-import { useGlobalStore } from './useGlobalStore';
+import { PrefersColorScheme } from "../components/styles/media";
+import { type ThemeMode, type ThemeState, themeKeyMap } from "../components/styles/theme";
+import { useGlobalStore } from "./useGlobalStore";
 
 const ThemeStateContext = createContext<ThemeState | null>(null);
 
 const getSystemThemeMode = (): ThemeMode => {
+  if (typeof window === "undefined") {
+    return "light";
+  }
   if (window.matchMedia(PrefersColorScheme.light).matches) {
     return "light";
   }
@@ -43,7 +45,7 @@ export const ThemeStateProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [change]);
 
   useEffect(() => {
-    if (getIsBrowser()) {
+    if (typeof window !== "undefined") {
       // 初期マウント時にbodyのスタイルを設定
       document.body.style.backgroundColor = `var(--theme-${themeMode}-color-surface-primary)`;
       document.body.dataset.themeMode = themeMode;

@@ -1,6 +1,6 @@
 import { createTimeline } from "animejs";
-import { isMobile } from '../util/canvas';
 import { type State, state } from "./state";
+import { isMobile } from "./utils";
 
 const BACKGROUND_GRID_STROKE_WIDTH = 1;
 const BACKGROUND_GRID_GAP = 40;
