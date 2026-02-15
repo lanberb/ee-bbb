@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { type FC, type MouseEvent, type PropsWithChildren, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { MediaQuery } from '../../styles/media';
-import { GLOBAL_TRANSITION_DURATION } from '../../styles/mixins/transition';
+import { MediaQuery } from "../../styles/media";
+import { GLOBAL_TRANSITION_DURATION } from "../../styles/mixins/transition";
 import { Stack } from "../Stack";
 
 const _Dialog = styled.dialog`

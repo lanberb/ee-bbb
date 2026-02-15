@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { type CSSProperties, type FC, useCallback, useEffect, useState } from "react";
-import { MediaQuery } from '../../../styles/media';
-import type { IconName } from '../../../unit/Icon';
-import { useGlobalCanvas } from '../../../../hooks/useGlobalCanvas';
+import { useGlobalCanvas } from "../../../../hooks/useGlobalCanvas";
+import { MediaQuery } from "../../../styles/media";
+import type { IconName } from "../../../unit/Icon";
 import { IconButton } from "../../IconButton";
 
 const ITEM_SIZE = 64;

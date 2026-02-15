@@ -1,18 +1,23 @@
 import styled from "@emotion/styled";
 import { type CSSProperties, type FC, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { SegmentControl } from '../SegmentControl';
-import { MediaQuery } from '../../styles/media';
-import { GLOBAL_TRANSITION_DURATION, type TransitionProps, transition } from '../../styles/mixins/transition';
-import type { ThemeMode } from '../../styles/theme';
-import { Box } from '../../unit/Box';
-import { Icon } from '../../unit/Icon';
-import { Link } from '../../unit/Link';
-import { Stack } from '../../unit/Stack';
-import { useI18n } from '../../../hooks/useI18n';
-import { useTheme } from '../../../hooks/useTheme';
-import type { LocaleKey } from '../../../util/i18n/localize';
-import { routes } from '../../../util/routes';
+import { useTheme } from "../../../hooks/useTheme";
+import { MediaQuery } from "../../styles/media";
+import { GLOBAL_TRANSITION_DURATION, type TransitionProps, transition } from "../../styles/mixins/transition";
+import type { ThemeMode } from "../../styles/theme";
+import { Box } from "../../unit/Box";
+import { Icon } from "../../unit/Icon";
+import { Link } from "../../unit/Link";
+import { Stack } from "../../unit/Stack";
+import { SegmentControl } from "../SegmentControl";
+
+export const routes = {
+  top: "/",
+  blog: "/blog",
+  gallery: "/gallery",
+  contact: "/contact",
+  hello: "/hello",
+};
 
 const navKeys: (keyof typeof routes)[] = ["top", "blog"];
 
@@ -67,7 +72,6 @@ const _NavigationCellList = styled(Stack)`
 export const GlobalNavigation: FC = () => {
   const location = useLocation();
   const theme = useTheme();
-  const i18n = useI18n();
 
   const handleOnSelectTheme = useCallback(
     (mode: string) => {
@@ -76,13 +80,6 @@ export const GlobalNavigation: FC = () => {
       }
     },
     [theme],
-  );
-
-  const handleOnSelectLang = useCallback(
-    (lang: string) => {
-      i18n.change(lang as LocaleKey);
-    },
-    [i18n],
   );
 
   const pseudoElementPositionX = (() => {
@@ -146,12 +143,12 @@ export const GlobalNavigation: FC = () => {
         </_NavigationCellList>
 
         <Stack alignItems="center" gap={24} px={24}>
-          <SegmentControl
+          {/* <SegmentControl
             name="localizeLang"
             defaultKey={i18n.lang}
             items={[<span key="ja">JA</span>, <span key="en">EN</span>]}
             onSelect={handleOnSelectLang}
-          />
+          /> */}
           <SegmentControl
             name="themeMode"
             defaultKey={theme?.mode}

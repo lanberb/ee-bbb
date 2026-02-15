@@ -1,8 +1,8 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import type { FC } from "react";
-import { Stack } from '../../unit/Stack';
-import { Text } from '../../unit/Text';
+import { Stack } from "../../unit/Stack";
+import { Text } from "../../unit/Text";
 
 const _Button = styled.button`
   display: flex;

@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import type { FC, MouseEvent } from "react";
-import { GLOBAL_TRANSITION_DURATION } from '../../styles/mixins';
-import type { Color } from '../../styles/theme';
-import { Icon, type IconProps } from '../../unit/Icon';
+import { GLOBAL_TRANSITION_DURATION } from "../../styles/mixins";
+import type { Color } from "../../styles/theme";
+import { Icon, type IconProps } from "../../unit/Icon";
 
 const _buttonBackgroundSize = 32;
 

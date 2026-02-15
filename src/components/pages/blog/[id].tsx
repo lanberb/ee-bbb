@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import Markdown from "react-markdown";
-import { Stack } from '../../unit/Stack';
-import { Text } from '../../unit/Text';
+import { Stack } from "../../unit/Stack";
+import { Text } from "../../unit/Text";
 
 interface Props {
   content: string;

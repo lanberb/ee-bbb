@@ -10,9 +10,13 @@ import {
   paddings,
   type TypographyProps,
   typography,
-} from '../../styles/mixins';
-import { protocol } from '../../../util/routes';
+} from "../../styles/mixins";
 import { Text } from "../Text";
+
+const protocol = {
+  http: "http://",
+  https: "https://",
+};
 
 interface Props extends TypographyProps, BaseProps, MarginProps, PaddingProps {
   href: string;

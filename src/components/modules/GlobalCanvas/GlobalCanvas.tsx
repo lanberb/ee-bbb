@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import type { FC } from "react";
-import { type BaseProps, base } from '../../styles/mixins';
-import { useGlobalCanvas } from '../../../hooks/useGlobalCanvas';
-import { useGlobalStore } from '../../../hooks/useGlobalStore';
+import { useGlobalCanvas } from "../../../hooks/useGlobalCanvas";
+import { useGlobalStore } from "../../../hooks/useGlobalStore";
+import { type BaseProps, base } from "../../styles/mixins";
 
 const grabbableStyle = css`
   cursor: grab;

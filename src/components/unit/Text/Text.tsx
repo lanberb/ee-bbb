@@ -9,7 +9,7 @@ import {
   paddings,
   type TypographyProps,
   typography,
-} from '../../styles/mixins';
+} from "../../styles/mixins";
 
 interface Props extends TypographyProps, BaseProps, MarginProps, PaddingProps {
   as?: keyof JSX.IntrinsicElements;
