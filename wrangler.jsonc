@@ -13,11 +13,17 @@
 	],
 	"assets": {
 		// The path to the directory containing the `index.html` file to be served at `/`
-		"directory": "./public"
+		"directory": "./src/assets",
+    "binding": "ASSETS"
 	},
+	"rules": [{
+		"type": "Data",
+		"globs": ["**/*.png"],
+		"fallthrough": true
+	}],
 	"observability": {
 		"enabled": true
-	}
+	},
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
