@@ -86,6 +86,10 @@ export const Page: FC = () => {
     stopInertia();
   }, [stopInertia, setInertiaVelocity]);
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     window.addEventListener("pointermove", handleOnPointerMove);
     window.addEventListener("pointerout", handleOnPointerUp);
     window.addEventListener("pointerup", handleOnPointerUp);
@@ -107,40 +111,32 @@ export const Page: FC = () => {
     globalStore.setIsEndedOpeningAnimation();
   }, [globalStore.setIsGrabbable, globalStore.setIsEndedOpeningAnimation]);
   useEffect(() => {
-    if (
-      themeState == null ||
-      engine == null ||
-      expandChromStickerImage.data == null ||
-      earthLogoStickerImage.data == null ||
-      startLikeStickerImage.data == null ||
-      rotateTextStickerImage.data == null ||
-      streetPaintStickerImage.data == null
-    ) {
+    if (themeState == null || engine == null) {
       return;
     }
     engine.render.clear();
     engine.setter.addOpeningAnimationImage({
-      image: expandChromStickerImage.data?.image,
+      image: expandChromStickerImage.image,
       x: 0,
       y: isMobile() ? 0 : -20,
     });
     engine.setter.addOpeningAnimationImage({
-      image: earthLogoStickerImage.data?.image,
+      image: earthLogoStickerImage.image,
       x: 240,
       y: -560,
     });
     engine.setter.addOpeningAnimationImage({
-      image: startLikeStickerImage.data?.image,
+      image: startLikeStickerImage.image,
       x: 600,
       y: 200,
     });
     engine.setter.addOpeningAnimationImage({
-      image: rotateTextStickerImage.data?.image,
+      image: rotateTextStickerImage.image,
       x: -240,
       y: 560,
     });
     engine.setter.addOpeningAnimationImage({
-      image: streetPaintStickerImage.data?.image,
+      image: streetPaintStickerImage.image,
       x: -600,
       y: -200,
     });
@@ -151,14 +147,13 @@ export const Page: FC = () => {
     );
   }, [
     // themeState,
-    expandChromStickerImage.data,
-    earthLogoStickerImage.data,
-    streetPaintStickerImage.data,
-    startLikeStickerImage.data,
-    rotateTextStickerImage.data,
+    expandChromStickerImage,
+    earthLogoStickerImage,
+    streetPaintStickerImage,
+    startLikeStickerImage,
+    rotateTextStickerImage,
     engine,
     handleOnOpeningAnimationComplete,
-    themeState,
   ]);
 
   return <PageLayout title="EE-BBB.©" />;

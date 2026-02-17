@@ -26,6 +26,10 @@ export const ThemeStateProvider: FC<PropsWithChildren> = ({ children }) => {
     (mode: ThemeMode) => {
       setThemeMode(mode);
 
+      if (typeof document === "undefined") {
+        return;
+      }
+
       // Flash of Unstyled Content防止目的でGlobalStyleで定義されたbodyの背景色を切り替える
       document.body.style.backgroundColor = `var(--theme-${mode}-color-surface-primary)`;
       // bodyのスタイルを動的に切り替えられるようにdatasetに設定する
@@ -45,7 +49,7 @@ export const ThemeStateProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [change]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
       // 初期マウント時にbodyのスタイルを設定
       document.body.style.backgroundColor = `var(--theme-${themeMode}-color-surface-primary)`;
       document.body.dataset.themeMode = themeMode;
@@ -55,7 +59,9 @@ export const ThemeStateProvider: FC<PropsWithChildren> = ({ children }) => {
     }
 
     return () => {
-      window.matchMedia(PrefersColorScheme.light).removeEventListener("change", handleOnChangeSystemThemeColor);
+      if (typeof window !== "undefined") {
+        window.matchMedia(PrefersColorScheme.light).removeEventListener("change", handleOnChangeSystemThemeColor);
+      }
     };
   }, [themeMode, handleOnChangeSystemThemeColor]);
 

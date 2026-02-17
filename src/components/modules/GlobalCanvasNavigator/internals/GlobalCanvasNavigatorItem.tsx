@@ -85,11 +85,11 @@ export const GlobalCanvasNavigatorItem: FC<ItemProps> = ({ name, invisibleArea, 
    * マウスイベント登録
    */
   useEffect(() => {
-    document.body.addEventListener("pointermove", handleOnPointerMove);
+    el?.addEventListener("pointermove", handleOnPointerMove);
     return () => {
-      document.body.removeEventListener("pointermove", handleOnPointerMove);
+      el?.removeEventListener("pointermove", handleOnPointerMove);
     };
-  }, [handleOnPointerMove]);
+  }, [el, handleOnPointerMove]);
 
   return (
     <Item

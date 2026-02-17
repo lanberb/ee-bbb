@@ -1,5 +1,5 @@
 import { type FC, useEffect } from "react";
-import { getSurfaceColor } from "../../../canvas/canvas";
+import { getSurfaceColor } from "../../../canvas/utils";
 import { useGlobalCanvas } from "../../../hooks/useGlobalCanvas";
 import { useTheme } from "../../../hooks/useTheme";
 import { BlogList } from "../../modules/BlogList";

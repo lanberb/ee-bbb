@@ -1,30 +1,34 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.jsonc`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
-
-import { renderToString } from "react-dom/server";
-import App from "./components/app/App";
+import { renderToReadableStream } from "react-dom/server";
+import { StaticRouter } from "react-router-dom";
+import { App } from "./components/app/App";
+import { GlobalCanvasProvider } from "./hooks/useGlobalCanvas";
+import { ThemeStateProvider } from "./hooks/useTheme";
 
 export default {
-  async fetch(request, _env, _ctx): Promise<Response> {
+  async fetch(request, env, _ctx): Promise<Response> {
     const url = new URL(request.url);
 
-    const rawHtml = await fetch(`${url.origin}/index.html`);
-    const html = await rawHtml.text();
+    // 静的アセットがあればそのまま返す
+    const assetRes = await env.ASSETS.fetch(request);
+    if (assetRes.ok) return assetRes;
 
-    const app = renderToString(<App />);
-    const responseText = html.replace(`<div id="root"></div>`, `<div id="root">${app}</div>`);
+    const manifestRes = await env.ASSETS.fetch(new URL("/.vite/manifest.json", url));
+    const manifest = (await manifestRes.json()) as Record<string, { file: string }>;
 
-    return new Response(responseText, {
+    const app = await renderToReadableStream(
+      <ThemeStateProvider>
+        <GlobalCanvasProvider>
+          <StaticRouter location={url.pathname}>
+            <App />
+          </StaticRouter>
+        </GlobalCanvasProvider>
+      </ThemeStateProvider>,
+      {
+        bootstrapScripts: [`/${manifest["src/client.tsx"].file}`],
+      },
+    );
+
+    return new Response(app, {
       headers: {
         "content-type": "text/html;charset=UTF-8",
       },

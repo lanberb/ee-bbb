@@ -26,7 +26,7 @@ export const isPrefersReducedMotion = () => {
 };
 
 export const getMobileFullWidthWithMargin = (width: number, margin = 16) => {
-  if (isMobile()) {
+  if (isMobile() && typeof document !== "undefined") {
     return document.documentElement.clientWidth - margin * 2;
   }
   return width;
@@ -36,6 +36,10 @@ export const getMobileFullWidthWithMargin = (width: number, margin = 16) => {
  * @summary keyをもとにglobalStyleに登録されているRGBAを返す
  */
 export const getSurfaceColor = (key: keyof Theme["surface"], themeState: ThemeState) => {
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    return "";
+  }
+
   const color = window
     .getComputedStyle(document.documentElement)
     .getPropertyValue(themeState.theme.surface[key])

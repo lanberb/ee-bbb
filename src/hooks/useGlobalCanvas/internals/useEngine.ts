@@ -5,6 +5,10 @@ export const useEngine = (context2d: CanvasRenderingContext2D | null) => {
   const [facade, setFacade] = useState<ReturnType<typeof createFacade> | null>(null);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     if (context2d != null) {
       setFacade(createFacade(context2d));
     }

@@ -1,14 +1,26 @@
+import { StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-import App from "./components/app/App.tsx";
+import { BrowserRouter } from "react-router-dom";
+import { App } from "./components/app/App";
+import { ErrorBoundary } from "./components/app/ErrorBoundary";
+import { GlobalCanvasProvider } from "./hooks/useGlobalCanvas";
+import { ThemeStateProvider } from "./hooks/useTheme";
 
 const main = () => {
-  const root = document.querySelector("#root");
-
-  if (root == null) {
-    throw new Error("Root Element could not be found.");
-  }
-
-  hydrateRoot(root, <App />);
+  hydrateRoot(
+    document,
+    <StrictMode>
+      <ErrorBoundary fallback={<div>Something went wrong.</div>}>
+        <ThemeStateProvider>
+          <GlobalCanvasProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </GlobalCanvasProvider>
+        </ThemeStateProvider>
+      </ErrorBoundary>
+    </StrictMode>,
+  );
 };
 
 main();

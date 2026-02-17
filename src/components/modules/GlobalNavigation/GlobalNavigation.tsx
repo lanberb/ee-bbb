@@ -83,6 +83,9 @@ export const GlobalNavigation: FC = () => {
   );
 
   const pseudoElementPositionX = (() => {
+    if (typeof window === "undefined") {
+      return 0;
+    }
     const index = navKeys.findIndex((route) => `/${route}` === location.pathname);
     const width = window.matchMedia(MediaQuery.sp).matches ? _NavigationCellWidth_SP : _NavigationCellWidth_PC;
     return width * Math.max(0, index);

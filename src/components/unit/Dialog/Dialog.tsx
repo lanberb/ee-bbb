@@ -22,7 +22,7 @@ const _Dialog = styled.dialog`
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.64);
     opacity: 0;
-    transition: 
+    transition:
       opacity ${GLOBAL_TRANSITION_DURATION}ms ease-in-out,
       overlay ${GLOBAL_TRANSITION_DURATION}ms allow-discrete,
       display ${GLOBAL_TRANSITION_DURATION}ms allow-discrete;
@@ -57,6 +57,10 @@ export const Dialog: FC<_FrameProps & PropsWithChildren> = ({ children, open, on
       dialogRef.current?.close();
     }
   }, [open]);
+
+  if (typeof document === "undefined") {
+    return null;
+  }
 
   return createPortal(
     <_Dialog aria-modal="true" role="dialog" ref={dialogRef} onClick={onRequestClose} onClose={onRequestClose}>

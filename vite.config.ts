@@ -4,10 +4,16 @@ import { injectHtmlsPlugin } from './src/plugins/injectHtmlsPlugin';
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: "./src/client.tsx"
+    },
+    manifest: true
+  },
   plugins: [
      injectHtmlsPlugin(),
      react({
        jsxImportSource: "@emotion/react",
-     }),
-    ]
+     })
+    ],
 });

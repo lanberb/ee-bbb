@@ -1,4 +1,4 @@
-import { useQueries } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 const loadImageAsync = (
   prop: { imageUrl: string; width: number } & Record<string, unknown>,
@@ -23,10 +23,18 @@ type Request = {
 }[];
 
 export const useListImage = (req: Request) => {
-  return useQueries({
-    queries: req.map(({ imageUrl, width }) => ({
-      queryKey: ["listImage", imageUrl],
-      queryFn: () => loadImageAsync({ imageUrl, width }),
-    })),
-  });
+  const [data, setData] = useState<Awaited<ReturnType<typeof loadImageAsync>>[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await Promise.all(req.map(({ imageUrl, width }) => loadImageAsync({ imageUrl, width })));
+        setData(res);
+      } catch (error) {
+        throw new Error("Failed to load images", { cause: error });
+      }
+    })();
+  }, [req.map]);
+
+  return data;
 };

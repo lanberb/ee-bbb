@@ -1,49 +1,55 @@
 import { Global } from "@emotion/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { StrictMode } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { GlobalCanvas } from '../modules/GlobalCanvas';
-import { GlobalCanvasNavigator } from '../modules/GlobalCanvasNavigator';
-import { GlobalFootprintDialog } from '../modules/GlobalFootprintDialog';
-import { GlobalNavigation } from '../modules/GlobalNavigation';
-import { Page as BlogPage } from '../pages/blog';
-import { Page as TopPage } from '../pages/top';
-import { createGlobalStyles } from '../styles/globalStyles';
-import { GlobalCanvasProvider } from '../../hooks/useGlobalCanvas';
-import { I18nStateProvider } from '../../hooks/useI18n';
-import { ThemeStateProvider } from '../../hooks/useTheme';
-import { routes } from '../../util/routes';
-import { ErrorBoundary } from "./ErrorBoundary";
+import type { FC, PropsWithChildren } from "react";
+import { Route, Routes } from "react-router-dom";
+import { GlobalCanvas } from "../modules/GlobalCanvas";
+import { GlobalCanvasNavigator } from "../modules/GlobalCanvasNavigator";
+import { GlobalFootprintDialog } from "../modules/GlobalFootprintDialog";
+import { GlobalNavigation } from "../modules/GlobalNavigation";
+import { Page as BlogPage } from "../pages/blog";
+import { Page as TopPage } from "../pages/top";
+import { createGlobalStyles } from "../styles/globalStyles";
 
-function App() {
-  const queryClient = new QueryClient();
-
+const Renderer: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <StrictMode>
-      <ErrorBoundary fallback={<div>Something went wrong.</div>}>
-        <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <I18nStateProvider>
-              <ThemeStateProvider>
-                <GlobalCanvasProvider>
-                  <Global styles={createGlobalStyles} />
-                  <GlobalCanvas />
-                  <GlobalCanvasNavigator />
-                  <GlobalNavigation />
-                  <GlobalFootprintDialog />
-
-                  <Routes>
-                    <Route path={routes.top} element={<TopPage />} />
-                    <Route path={routes.blog} element={<BlogPage />} />
-                  </Routes>
-                </GlobalCanvasProvider>
-              </ThemeStateProvider>
-            </I18nStateProvider>
-          </BrowserRouter>
-        </QueryClientProvider>
-      </ErrorBoundary>
-    </StrictMode>
+    <html lang="ja">
+      <head>
+        <meta charSet="UTF-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap&text=%22Extend Expression, Bit by Bit.Nao Sasaki / Lanberb, A Creative Developer based in Tokyo.%22© 2026"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Zen+Old+Mincho&display=swap"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EE-BBB.©</title>
+      </head>
+      <body>
+        <div>{children}</div>
+        <div id="icons" style={{ display: "none" }} />
+        <div id="filters" style={{ display: "none" }} />
+      </body>
+    </html>
   );
-}
+};
 
-export default App;
+export const App: FC = () => {
+  return (
+    <Renderer>
+      <Global styles={createGlobalStyles} />
+      <GlobalCanvas />
+      <GlobalCanvasNavigator />
+      <GlobalNavigation />
+      <GlobalFootprintDialog />
+
+      <Routes>
+        <Route path="/" element={<TopPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+      </Routes>
+    </Renderer>
+  );
+};
