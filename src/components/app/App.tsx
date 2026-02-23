@@ -8,6 +8,7 @@ import { GlobalNavigation } from "../modules/GlobalNavigation";
 import { Page as BlogPage } from "../pages/blog";
 import { Page as TopPage } from "../pages/top";
 import { createGlobalStyles } from "../styles/globalStyles";
+import { SvgResourceArea } from "./SvgResourceArea";
 
 const Renderer: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -30,8 +31,7 @@ const Renderer: FC<PropsWithChildren> = ({ children }) => {
       </head>
       <body>
         <div>{children}</div>
-        <div id="icons" style={{ display: "none" }} />
-        <div id="filters" style={{ display: "none" }} />
+        <SvgResourceArea />
       </body>
     </html>
   );
