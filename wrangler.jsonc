@@ -8,14 +8,11 @@
 		"global_fetch_strictly_public"
 	],
 	"assets": {
-		"directory": "./dist",
-    "binding": "ASSETS"
+		"binding": "ASSETS"
 	},
-	"rules": [{
-		"type": "Data",
-		"globs": ["**/*.png"],
-		"fallthrough": true
-	}],
+	"vars": {
+		"DEV": "false"
+	},
 	"observability": {
 		"enabled": true
 	}

@@ -1,19 +1,19 @@
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import { injectHtmlsPlugin } from './src/plugins/injectHtmlsPlugin';
+import { cloudflare } from "@cloudflare/vite-plugin";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: "./src/client.tsx"
+      input: "./src/client.tsx",
     },
-    manifest: true
+    manifest: true,
   },
   plugins: [
-     injectHtmlsPlugin(),
-     react({
-       jsxImportSource: "@emotion/react",
-     })
-    ],
+    cloudflare(),
+    react({
+      jsxImportSource: "@emotion/react",
+    }),
+  ],
 });

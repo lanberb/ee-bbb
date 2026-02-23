@@ -12,8 +12,20 @@ export default {
     const assetRes = await env.ASSETS.fetch(request);
     if (assetRes.ok) return assetRes;
 
+    let bootstrapModules: string[];
+    let bootstrapScriptContent: string | undefined;
     const manifestRes = await env.ASSETS.fetch(new URL("/.vite/manifest.json", url));
-    const manifest = (await manifestRes.json()) as Record<string, { file: string }>;
+    if (manifestRes.ok) {
+      const manifest = (await manifestRes.json()) as Record<string, { file: string }>;
+      bootstrapModules = [`/${manifest["src/client.tsx"].file}`];
+    } else {
+      // dev mode: Vite dev serverがクライアントコードを配信
+      // React Refresh preamble: モジュール評価前にグローバル変数を設定する
+      // bootstrapScriptContent は通常の<script>を生成するため、module scriptsより先に実行される
+      bootstrapScriptContent =
+        "window.$RefreshReg$ = () => {};window.$RefreshSig$ = () => (type) => type;window.__vite_plugin_react_preamble_installed__ = true;";
+      bootstrapModules = ["/@vite/client", "/src/client.tsx"];
+    }
 
     const app = await renderToReadableStream(
       <ThemeStateProvider>
@@ -23,9 +35,7 @@ export default {
           </StaticRouter>
         </GlobalCanvasProvider>
       </ThemeStateProvider>,
-      {
-        bootstrapScripts: [`/${manifest["src/client.tsx"].file}`],
-      },
+      { bootstrapModules, bootstrapScriptContent },
     );
 
     return new Response(app, {

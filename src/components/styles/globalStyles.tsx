@@ -83,7 +83,7 @@ export const createGlobalStyles = (_: Theme) => {
         background-repeat: repeat;
       }
 
-      &[data-theme-mode="light"] {
+      &:not([data-theme-mode]), &[data-theme-mode="light"] {
         background-color: var(--theme-light-color-surface-primary);
         &::before{
           opacity: 0.24;

@@ -39,13 +39,7 @@ export const Page: FC = () => {
   const themeState = useTheme();
   const globalStore = useGlobalStore();
   const { movement, engine, isDragging, update } = useGlobalCanvas();
-  const [
-    expandChromStickerImage,
-    earthLogoStickerImage,
-    startLikeStickerImage,
-    rotateTextStickerImage,
-    streetPaintStickerImage,
-  ] = useListImage(STICKER_SETTING_LIST);
+  const listImage = useListImage(STICKER_SETTING_LIST);
 
   const { setInertiaVelocity, startInertia, stopInertia } = useInertia();
 
@@ -111,9 +105,16 @@ export const Page: FC = () => {
     globalStore.setIsEndedOpeningAnimation();
   }, [globalStore.setIsGrabbable, globalStore.setIsEndedOpeningAnimation]);
   useEffect(() => {
-    if (themeState == null || engine == null) {
+    if (themeState == null || engine == null || listImage.length === 0) {
       return;
     }
+    const [
+      expandChromStickerImage,
+      earthLogoStickerImage,
+      startLikeStickerImage,
+      rotateTextStickerImage,
+      streetPaintStickerImage,
+    ] = listImage;
     engine.render.clear();
     engine.setter.addOpeningAnimationImage({
       image: expandChromStickerImage.image,
@@ -146,12 +147,8 @@ export const Page: FC = () => {
       handleOnOpeningAnimationComplete,
     );
   }, [
-    // themeState,
-    expandChromStickerImage,
-    earthLogoStickerImage,
-    streetPaintStickerImage,
-    startLikeStickerImage,
-    rotateTextStickerImage,
+    themeState,
+    listImage,
     engine,
     handleOnOpeningAnimationComplete,
   ]);

@@ -24,7 +24,7 @@ const navKeys: (keyof typeof routes)[] = ["top", "blog"];
 const _NavigationCellWidth_PC = 84;
 const _NavigationCellWidth_SP = 72;
 
-const _NavigationTransitionItem = styled(Box)<TransitionProps>`
+const _NavigationTransitionItem = styled(Box) <TransitionProps>`
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16);
   z-index: 9999;
 
@@ -83,11 +83,11 @@ export const GlobalNavigation: FC = () => {
   );
 
   const pseudoElementPositionX = (() => {
-    if (typeof window === "undefined") {
-      return 0;
-    }
     const index = navKeys.findIndex((route) => `/${route}` === location.pathname);
-    const width = window.matchMedia(MediaQuery.sp).matches ? _NavigationCellWidth_SP : _NavigationCellWidth_PC;
+    const width =
+      typeof window !== "undefined" && window.matchMedia(MediaQuery.sp).matches
+        ? _NavigationCellWidth_SP
+        : _NavigationCellWidth_PC;
     return width * Math.max(0, index);
   })();
 

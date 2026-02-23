@@ -1,6 +1,4 @@
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
-import type { ThemeMode } from "../components/styles/theme";
 
 export type ExpressionLevel = "low" | "high";
 
@@ -25,38 +23,22 @@ type Store = {
   isOpenCreateStickerDialog: boolean;
   openCreateStickerDialog: () => void;
   closeCreateStickerDialog: () => void;
-
-  // Theme
-  themeMode: ThemeMode | null;
-  setThemeMode: (mode: ThemeMode) => void;
 };
 
-export const useGlobalStore = create<Store>()(
-  persist(
-    (set) => ({
-      expressionLevel: null,
-      setExpressionLevel: (expressionLevel: ExpressionLevel) => set({ expressionLevel }),
+export const useGlobalStore = create<Store>()((set) => ({
+  expressionLevel: null,
+  setExpressionLevel: (expressionLevel: ExpressionLevel) => set({ expressionLevel }),
 
-      isPlayedOnce: false,
-      setIsPlayedOnce: () => set({ isPlayedOnce: true }),
+  isPlayedOnce: false,
+  setIsPlayedOnce: () => set({ isPlayedOnce: true }),
 
-      isEndedOpeningAnimation: false,
-      setIsEndedOpeningAnimation: () => set({ isEndedOpeningAnimation: true }),
+  isEndedOpeningAnimation: false,
+  setIsEndedOpeningAnimation: () => set({ isEndedOpeningAnimation: true }),
 
-      isGrabbable: false,
-      setIsGrabbable: (isGrabbable: boolean) => set({ isGrabbable }),
+  isGrabbable: false,
+  setIsGrabbable: (isGrabbable: boolean) => set({ isGrabbable }),
 
-      isOpenCreateStickerDialog: false,
-      openCreateStickerDialog: () => set({ isOpenCreateStickerDialog: true }),
-      closeCreateStickerDialog: () => set({ isOpenCreateStickerDialog: false }),
-
-      themeMode: null,
-      setThemeMode: (mode) => set({ themeMode: mode }),
-    }),
-    {
-      name: "theme-store",
-      partialize: (state) => ({ themeMode: state.themeMode }),
-      storage: createJSONStorage(() => localStorage),
-    },
-  ),
-);
+  isOpenCreateStickerDialog: false,
+  openCreateStickerDialog: () => set({ isOpenCreateStickerDialog: true }),
+  closeCreateStickerDialog: () => set({ isOpenCreateStickerDialog: false }),
+}));

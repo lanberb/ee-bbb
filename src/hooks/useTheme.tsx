@@ -1,8 +1,27 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
-import { createContext, type FC, type PropsWithChildren, useCallback, useContext, useEffect } from "react";
+import { createContext, type FC, type PropsWithChildren, useCallback, useContext, useEffect, useMemo } from "react";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { PrefersColorScheme } from "../components/styles/media";
 import { type ThemeMode, type ThemeState, themeKeyMap } from "../components/styles/theme";
-import { useGlobalStore } from "./useGlobalStore";
+
+type ThemeStore = {
+  themeMode: ThemeMode | null;
+  setThemeMode: (mode: ThemeMode) => void;
+};
+
+const useThemeStore = create<ThemeStore>()(
+  persist(
+    (set) => ({
+      themeMode: null,
+      setThemeMode: (mode) => set({ themeMode: mode }),
+    }),
+    {
+      name: "theme-store",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+);
 
 const ThemeStateContext = createContext<ThemeState | null>(null);
 
@@ -17,7 +36,8 @@ const getSystemThemeMode = (): ThemeMode => {
 };
 
 export const ThemeStateProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { themeMode: persistedThemeMode, setThemeMode } = useGlobalStore();
+  const persistedThemeMode = useThemeStore((s) => s.themeMode);
+  const setThemeMode = useThemeStore((s) => s.setThemeMode);
 
   const systemThemeMode = getSystemThemeMode();
   const themeMode = persistedThemeMode ?? systemThemeMode;
@@ -38,11 +58,10 @@ export const ThemeStateProvider: FC<PropsWithChildren> = ({ children }) => {
     [setThemeMode],
   );
 
-  const themeState: ThemeState = {
-    theme: themeKeyMap[themeMode],
-    mode: themeMode,
-    change,
-  };
+  const themeState: ThemeState = useMemo(
+    () => ({ theme: themeKeyMap[themeMode], mode: themeMode, change }),
+    [themeMode, change],
+  );
 
   const handleOnChangeSystemThemeColor = useCallback(() => {
     change(getSystemThemeMode());

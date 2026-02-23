@@ -6,7 +6,7 @@ export class ErrorBoundary extends React.Component<{ children: React.ReactNode; 
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
-    console.error("ErrorBoundary caught an error:", error, info);
+    console.error(error, info);
   }
 
   render() {
