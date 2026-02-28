@@ -1,5 +1,5 @@
 import { Global } from "@emotion/react";
-import type { FC, PropsWithChildren } from "react";
+import type { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import { GlobalCanvas } from "../modules/GlobalCanvas";
 import { GlobalCanvasNavigator } from "../modules/GlobalCanvasNavigator";
@@ -10,7 +10,7 @@ import { Page as TopPage } from "../pages/top";
 import { createGlobalStyles } from "../styles/globalStyles";
 import { SvgResourceArea } from "./SvgResourceArea";
 
-const Renderer: FC<PropsWithChildren> = ({ children }) => {
+export const App: FC = () => {
   return (
     <html lang="ja">
       <head>
@@ -30,26 +30,20 @@ const Renderer: FC<PropsWithChildren> = ({ children }) => {
         <title>EE-BBB.©</title>
       </head>
       <body>
-        <div>{children}</div>
+        <div>
+          <Global styles={createGlobalStyles} />
+          <GlobalCanvas />
+          <GlobalCanvasNavigator />
+          <GlobalNavigation />
+          <GlobalFootprintDialog />
+
+          <Routes>
+            <Route path="/" element={<TopPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+          </Routes>
+        </div>
         <SvgResourceArea />
       </body>
     </html>
-  );
-};
-
-export const App: FC = () => {
-  return (
-    <Renderer>
-      <Global styles={createGlobalStyles} />
-      <GlobalCanvas />
-      <GlobalCanvasNavigator />
-      <GlobalNavigation />
-      <GlobalFootprintDialog />
-
-      <Routes>
-        <Route path="/" element={<TopPage />} />
-        <Route path="/blog" element={<BlogPage />} />
-      </Routes>
-    </Renderer>
   );
 };
