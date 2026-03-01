@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { type CSSProperties, type FC, useCallback, useEffect, useState } from "react";
 import { useGlobalCanvas } from "../../../../hooks/useGlobalCanvas";
+import { IconButton } from "../../../modules/IconButton";
 import { MediaQuery } from "../../../styles/media";
 import type { IconName } from "../../../unit/Icon";
-import { IconButton } from "../../IconButton";
 
 const ITEM_SIZE = 64;
 const ITEM_POSITION_OFFSET = ITEM_SIZE / 4;

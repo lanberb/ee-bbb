@@ -1,5 +1,6 @@
 import { renderToReadableStream } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
+import { handleApiRequest } from "./api";
 import { App } from "./components/app/App";
 import { GlobalCanvasProvider } from "./hooks/useGlobalCanvas";
 import { ThemeStateProvider } from "./hooks/useTheme";
@@ -11,6 +12,11 @@ export default {
     // 静的アセットがあればそのまま返す
     const assetRes = await env.ASSETS.fetch(request);
     if (assetRes.ok) return assetRes;
+
+    // APIリクエスト
+    if (url.pathname.startsWith("/api/")) {
+      return handleApiRequest(url);
+    }
 
     let bootstrapModules: string[];
     let bootstrapScriptContent: string | undefined;

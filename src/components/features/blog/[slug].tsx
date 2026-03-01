@@ -7,7 +7,7 @@ interface Props {
   content: string;
 }
 
-const Page: FC<Props> = ({ content }) => {
+export const Page: FC<Props> = ({ content }) => {
   return (
     <Stack mx="auto" maxWidth={960} mt={160}>
       <Markdown
@@ -30,5 +30,3 @@ const Page: FC<Props> = ({ content }) => {
     </Stack>
   );
 };
-
-export default Page;

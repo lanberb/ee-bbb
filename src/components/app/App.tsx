@@ -1,12 +1,11 @@
 import { Global } from "@emotion/react";
 import type { FC } from "react";
 import { Route, Routes } from "react-router-dom";
+import { Page as BlogPage } from "../features/blog/Page";
+import { Page as TopPage } from "../features/top/Page";
 import { GlobalCanvas } from "../modules/GlobalCanvas";
-import { GlobalCanvasNavigator } from "../modules/GlobalCanvasNavigator";
 import { GlobalFootprintDialog } from "../modules/GlobalFootprintDialog";
 import { GlobalNavigation } from "../modules/GlobalNavigation";
-import { Page as BlogPage } from "../pages/blog";
-import { Page as TopPage } from "../pages/top";
 import { createGlobalStyles } from "../styles/globalStyles";
 import { SvgResourceArea } from "./SvgResourceArea";
 
@@ -15,6 +14,7 @@ export const App: FC = () => {
     <html lang="ja">
       <head>
         <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -26,14 +26,12 @@ export const App: FC = () => {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Zen+Old+Mincho&display=swap"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>EE-BBB.©</title>
       </head>
       <body>
         <div>
           <Global styles={createGlobalStyles} />
           <GlobalCanvas />
-          <GlobalCanvasNavigator />
           <GlobalNavigation />
           <GlobalFootprintDialog />
 

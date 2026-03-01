@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { type FC, useCallback } from "react";
-import { getSurfaceColor } from "../../../canvas/utils";
-import { useGlobalCanvas } from "../../../hooks/useGlobalCanvas";
-import { useGlobalStore } from "../../../hooks/useGlobalStore";
-import { useTheme } from "../../../hooks/useTheme";
-import { GlobalCanvasNavigatorItem } from "./internals/GlobalCanvasNavigatorItem";
+import { getSurfaceColor } from "../../../../canvas/utils";
+import { useGlobalCanvas } from "../../../../hooks/useGlobalCanvas";
+import { useGlobalStore } from "../../../../hooks/useGlobalStore";
+import { useTheme } from "../../../../hooks/useTheme";
+import { GlobalCanvasNavigatorItem } from "./TopNavigationItem";
 
 const List = styled.ul<{ showBorder: boolean }>`
   position: fixed;
@@ -31,7 +31,7 @@ const List = styled.ul<{ showBorder: boolean }>`
   }
 `;
 
-export const GlobalCanvasNavigator: FC = () => {
+export const TopNavigation: FC = () => {
   const themeState = useTheme();
   const { engine, movement, update } = useGlobalCanvas();
   const globalStore = useGlobalStore();

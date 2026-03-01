@@ -11,6 +11,7 @@ import { useGlobalStore } from "../../../hooks/useGlobalStore";
 import { useListImage } from "../../../hooks/useListImages";
 import { useTheme } from "../../../hooks/useTheme";
 import { PageLayout } from "../../modules/PageLayout";
+import { TopNavigation } from "./components/TopNavigation";
 
 const STICKER_SETTING_LIST = [
   {
@@ -153,5 +154,9 @@ export const Page: FC = () => {
     handleOnOpeningAnimationComplete,
   ]);
 
-  return <PageLayout title="EE-BBB.©" />;
+  return (
+    <PageLayout title="EE-BBB.©" >
+      <TopNavigation />
+    </PageLayout>
+  );
 };

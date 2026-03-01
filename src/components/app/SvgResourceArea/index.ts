@@ -1,1 +1,0 @@
-export { SvgResourceArea } from "./SvgResourceArea";
