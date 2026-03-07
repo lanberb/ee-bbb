@@ -1,15 +1,12 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
-  "assist": { 
-    "actions": { 
-      "source": { 
+  "assist": {
+    "actions": {
+      "source": {
         "organizeImports": {
           "level": "on",
           "options": {
-              "groups": [
-                ":NODE:",
-                ":URL:"
-              ]
+            "groups": [":NODE:", ":URL:"]
           }
         }
       }
@@ -39,6 +36,6 @@
     }
   },
   "files": {
-    "includes": ["./src/**/*.ts", "./src/**/*.tsx"]
+    "includes": ["./src/**/*.ts", "./src/**/*.tsx", "!./src/**/*.d.ts"]
   }
 }

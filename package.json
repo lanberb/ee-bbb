@@ -8,13 +8,15 @@
     "build": "vite build",
     "preview": "vite build && vite preview",
     "deploy": "vite build && wrangler deploy",
-    "lint": "biome check --write ./src",
+    "format": "biome check --write ./src",
     "typecheck": "tsc --noEmit",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mdx-js/react": "^3.1.1",
+    "@mdx-js/rollup": "^3.1.1",
     "animejs": "^4.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

@@ -23,15 +23,15 @@ const _Item = styled.li`
 `;
 
 type Props = {
-  blogs: [];
+  blogs: BlogMeta[];
 };
 
 export const BlogList: FC<Props> = ({ blogs }) => {
   return (
     <_List>
-      {blogs.map((blog, index) => (
-        <_Item key={index.toString()}>{blog}</_Item>
-      ))}
+      {blogs.map((blog) => {
+        return <_Item key={blog.id}>{blog.title}</_Item>;
+      })}
     </_List>
   );
 };

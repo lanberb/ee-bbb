@@ -1,6 +1,5 @@
 import { renderToReadableStream } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-import { handleApiRequest } from "./api";
 import { App } from "./components/app/App";
 import { GlobalCanvasProvider } from "./hooks/useGlobalCanvas";
 import { ThemeStateProvider } from "./hooks/useTheme";
@@ -52,3 +51,27 @@ export default {
     });
   },
 } satisfies ExportedHandler<Env>;
+
+function handleApiRequest(url: URL): Response {
+  const path = url.pathname.replace(/^\/api/, "");
+
+  if (path === "/blogs") {
+    return getBlogList();
+  }
+
+  return new Response("Not Found", { status: 404 });
+}
+
+function getBlogList(): Response {
+  const blogModules = import.meta.glob<{ meta: BlogMeta }>("../docs/blog/*.mdx", { eager: true });
+  const blogs = Object.values(blogModules).map((blog) => {
+    const { title, publishedAt, updatedAt } = blog.meta;
+    return {
+      title,
+      publishedAt,
+      updatedAt,
+    };
+  });
+
+  return Response.json(blogs);
+}

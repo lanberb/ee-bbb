@@ -24,7 +24,7 @@ const navKeys: (keyof typeof routes)[] = ["top", "blog"];
 const _NavigationCellWidth_PC = 84;
 const _NavigationCellWidth_SP = 72;
 
-const _NavigationTransitionItem = styled(Box) <TransitionProps>`
+const _NavigationTransitionItem = styled(Box)<TransitionProps>`
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16);
   z-index: 9999;
 

@@ -26,5 +26,5 @@
 
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/server.tsx", "src/api/**/*.ts"]
+  "exclude": ["src/server.tsx"]
 }

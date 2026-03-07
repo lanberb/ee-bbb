@@ -147,15 +147,10 @@ export const Page: FC = () => {
       getSurfaceColor("primaryInversed", themeState),
       handleOnOpeningAnimationComplete,
     );
-  }, [
-    themeState,
-    listImage,
-    engine,
-    handleOnOpeningAnimationComplete,
-  ]);
+  }, [themeState, listImage, engine, handleOnOpeningAnimationComplete]);
 
   return (
-    <PageLayout title="EE-BBB.©" >
+    <PageLayout title="EE-BBB.©">
       <TopNavigation />
     </PageLayout>
   );
