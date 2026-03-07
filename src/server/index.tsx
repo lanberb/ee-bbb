@@ -3,7 +3,7 @@ import { StaticRouter } from "react-router-dom";
 import { App } from "../components/app/App";
 import { GlobalCanvasProvider } from "../hooks/useGlobalCanvas";
 import { ThemeStateProvider } from "../hooks/useTheme";
-import { createApiResponse } from "./api";
+import { createApiResponse } from "./apiRouter";
 
 export default {
   async fetch(req, env, _ctx): Promise<Response> {

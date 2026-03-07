@@ -3,7 +3,7 @@ import { getSurfaceColor } from "../../../canvas/utils";
 import { useDataFetch } from "../../../hooks/useDataFetch";
 import { useGlobalCanvas } from "../../../hooks/useGlobalCanvas";
 import { useTheme } from "../../../hooks/useTheme";
-import type { BlogMeta } from "../../../schema/blog";
+import type { TypeListBlogResponse } from "../../../server/schema";
 import { PageLayout } from "../../modules/PageLayout";
 import { PageTitle } from "../../modules/PageTitle";
 import { BlogList } from "./components/BlogList";
@@ -12,7 +12,8 @@ export const Page: FC = () => {
   const theme = useTheme();
   const { engine } = useGlobalCanvas();
 
-  const { data } = useDataFetch<BlogMeta[]>("/api/blogs");
+  const { data } = useDataFetch<TypeListBlogResponse>("/api/blogs");
+  console.log(data);
 
   useEffect(() => {
     if (engine == null || theme == null) {
@@ -24,7 +25,7 @@ export const Page: FC = () => {
   return (
     <PageLayout title="Blog｜EE-BBB.©">
       <PageTitle title="Blog" />
-      <BlogList blogs={data ?? []} />
+      <BlogList blogs={data?.blogs ?? []} />
     </PageLayout>
   );
 };

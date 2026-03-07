@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import type { FC } from "react";
-import type { BlogMeta } from "../../../../schema/blog";
+import type { TypeListBlogResponse } from "../../../../server/schema";
 import { Text } from "../../../unit/Text";
 
 const _List = styled.ul`
@@ -21,7 +21,7 @@ const _Item = styled.li`
 `;
 
 type Props = {
-  blogs: BlogMeta[];
+  blogs: TypeListBlogResponse["blogs"];
 };
 
 export const BlogList: FC<Props> = ({ blogs }) => {
