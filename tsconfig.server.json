@@ -41,5 +41,5 @@
 			"vite/client"
 		]
 	},
-	"include": ["worker-configuration.d.ts", "src/types/api.d.ts", "src/server.tsx"],
+	"include": ["worker-configuration.d.ts", "src/server/**/*.ts", "src/server/**/*.tsx"],
 }

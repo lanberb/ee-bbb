@@ -1,20 +1,21 @@
 import { renderToReadableStream } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-import { App } from "./components/app/App";
-import { GlobalCanvasProvider } from "./hooks/useGlobalCanvas";
-import { ThemeStateProvider } from "./hooks/useTheme";
+import { App } from "../components/app/App";
+import { GlobalCanvasProvider } from "../hooks/useGlobalCanvas";
+import { ThemeStateProvider } from "../hooks/useTheme";
+import { createApiResponse } from "./api";
 
 export default {
-  async fetch(request, env, _ctx): Promise<Response> {
-    const url = new URL(request.url);
+  async fetch(req, env, _ctx): Promise<Response> {
+    const url = new URL(req.url);
 
     // 静的アセットがあればそのまま返す
-    const assetRes = await env.ASSETS.fetch(request);
+    const assetRes = await env.ASSETS.fetch(req);
     if (assetRes.ok) return assetRes;
 
     // APIリクエスト
     if (url.pathname.startsWith("/api/")) {
-      return handleApiRequest(url);
+      return createApiResponse(req);
     }
 
     let bootstrapModules: string[];
@@ -51,27 +52,3 @@ export default {
     });
   },
 } satisfies ExportedHandler<Env>;
-
-function handleApiRequest(url: URL): Response {
-  const path = url.pathname.replace(/^\/api/, "");
-
-  if (path === "/blogs") {
-    return getBlogList();
-  }
-
-  return new Response("Not Found", { status: 404 });
-}
-
-function getBlogList(): Response {
-  const blogModules = import.meta.glob<{ meta: BlogMeta }>("../docs/blog/*.mdx", { eager: true });
-  const blogs = Object.values(blogModules).map((blog) => {
-    const { title, publishedAt, updatedAt } = blog.meta;
-    return {
-      title,
-      publishedAt,
-      updatedAt,
-    };
-  });
-
-  return Response.json(blogs);
-}

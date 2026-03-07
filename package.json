@@ -23,6 +23,7 @@
     "react-markdown": "^10.0.0",
     "react-router-dom": "^7.9.1",
     "three": "^0.173.0",
+    "zod": "^4.3.6",
     "zustand": "^5.0.8"
   },
   "devDependencies": {

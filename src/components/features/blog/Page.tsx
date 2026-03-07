@@ -3,7 +3,9 @@ import { getSurfaceColor } from "../../../canvas/utils";
 import { useDataFetch } from "../../../hooks/useDataFetch";
 import { useGlobalCanvas } from "../../../hooks/useGlobalCanvas";
 import { useTheme } from "../../../hooks/useTheme";
+import type { BlogMeta } from "../../../schema/blog";
 import { PageLayout } from "../../modules/PageLayout";
+import { PageTitle } from "../../modules/PageTitle";
 import { BlogList } from "./components/BlogList";
 
 export const Page: FC = () => {
@@ -21,9 +23,8 @@ export const Page: FC = () => {
 
   return (
     <PageLayout title="Blog｜EE-BBB.©">
-      <div style={{ position: "relative" }}>
-        <BlogList blogs={data ?? []} />
-      </div>
+      <PageTitle title="Blog" />
+      <BlogList blogs={data ?? []} />
     </PageLayout>
   );
 };

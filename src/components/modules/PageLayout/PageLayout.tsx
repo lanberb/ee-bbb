@@ -8,7 +8,9 @@ export const PageLayout: FC<PropsWithChildren<Props>> = ({ title, children }) =>
   return (
     <>
       <title>{title}</title>
-      {children}
+      <div style={{ paddingTop: 240, maxWidth: 960, marginInline: "auto", position: "relative", zIndex: 1 }}>
+        {children}
+      </div>
     </>
   );
 };
