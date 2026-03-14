@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { App } from "./components/app/App";
-import { ErrorBoundary } from "./components/app/ErrorBoundary";
+import { App } from "./components/features/app/App";
+import { ErrorBoundary } from "./components/features/app/ErrorBoundary";
 import { GlobalCanvasProvider } from "./hooks/useGlobalCanvas";
 import { ThemeStateProvider } from "./hooks/useTheme";
 

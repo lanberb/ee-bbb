@@ -6,7 +6,7 @@ import { paddings } from "./padding";
 import { stack } from "./stack";
 import { typography } from "./typography";
 
-type ButtonVariant = "filled" | "outlined";
+type ButtonVariant = "filled" | "outlined" | "raw";
 
 const getVariantStyles = (variant: ButtonVariant, theme?: Theme): SerializedStyles => {
   switch (variant) {
@@ -17,7 +17,7 @@ const getVariantStyles = (variant: ButtonVariant, theme?: Theme): SerializedStyl
         ${typography({ theme, color: "primary" })}
       `;
     }
-    default: {
+    case "filled": {
       return css`
         ${base({
           theme,
@@ -30,6 +30,9 @@ const getVariantStyles = (variant: ButtonVariant, theme?: Theme): SerializedStyl
           color: "primaryInversed",
         })}
       `;
+    }
+    default: {
+      return css``;
     }
   }
 };

@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
 import { type CSSProperties, type FC, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { useTheme } from "../../../hooks/useTheme";
-import { MediaQuery } from "../../styles/media";
-import { GLOBAL_TRANSITION_DURATION, type TransitionProps, transition } from "../../styles/mixins/transition";
-import type { ThemeMode } from "../../styles/theme";
-import { Box } from "../../unit/Box";
-import { Icon } from "../../unit/Icon";
-import { Link } from "../../unit/Link";
-import { Stack } from "../../unit/Stack";
-import { SegmentControl } from "../SegmentControl";
+import { useTheme } from "../../../../hooks/useTheme";
+import { SegmentControl } from "../../../shared/SegmentControl";
+import { MediaQuery } from "../../../styles/media";
+import { GLOBAL_TRANSITION_DURATION, type TransitionProps, transition } from "../../../styles/mixins/transition";
+import type { ThemeMode } from "../../../styles/theme";
+import { Box } from "../../../unit/Box";
+import { Icon } from "../../../unit/Icon";
+import { Link } from "../../../unit/Link";
+import { Stack } from "../../../unit/Stack";
 
 export const routes = {
   top: "/",

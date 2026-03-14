@@ -4,8 +4,8 @@ import { useDataFetch } from "../../../hooks/useDataFetch";
 import { useGlobalCanvas } from "../../../hooks/useGlobalCanvas";
 import { useTheme } from "../../../hooks/useTheme";
 import type { TypeListBlogResponse } from "../../../server/schema";
-import { PageLayout } from "../../modules/PageLayout";
-import { PageTitle } from "../../modules/PageTitle";
+import { PageLayout } from "../../shared/PageLayout";
+import { PageTitle } from "../../shared/PageTitle";
 import { BlogList } from "./components/BlogList";
 
 export const Page: FC = () => {

@@ -10,7 +10,7 @@ import { useInertia } from "../../../hooks/useGlobalCanvas/internals/useInertia"
 import { useGlobalStore } from "../../../hooks/useGlobalStore";
 import { useListImage } from "../../../hooks/useListImages";
 import { useTheme } from "../../../hooks/useTheme";
-import { PageLayout } from "../../modules/PageLayout";
+import { PageLayout } from "../../shared/PageLayout";
 import { TopNavigation } from "./components/TopNavigation";
 
 const STICKER_SETTING_LIST = [

@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import { type CSSProperties, type FC, useCallback, useEffect, useState } from "react";
 import { useGlobalCanvas } from "../../../../hooks/useGlobalCanvas";
-import { IconButton } from "../../../modules/IconButton";
 import { MediaQuery } from "../../../styles/media";
-import type { IconName } from "../../../unit/Icon";
+import { Button } from "../../../unit/Button";
+import { Icon, type IconName } from "../../../unit/Icon";
+import { Text } from "../../../unit/Text";
 
 const ITEM_SIZE = 64;
 const ITEM_POSITION_OFFSET = ITEM_SIZE / 4;
@@ -101,7 +102,11 @@ export const GlobalCanvasNavigatorItem: FC<ItemProps> = ({ name, invisibleArea, 
         } as CSSProperties
       }
     >
-      <IconButton name={name} color="primaryInversed" onClick={onClick} />
+      <Button onClick={onClick} type="button" variant="raw">
+        <Text as="span" color="primaryInversed">
+          <Icon name={name} />
+        </Text>
+      </Button>
     </Item>
   );
 };

@@ -1,6 +1,6 @@
 import { renderToReadableStream } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-import { App } from "../components/app/App";
+import { App } from "../components/features/app/App";
 import { GlobalCanvasProvider } from "../hooks/useGlobalCanvas";
 import { ThemeStateProvider } from "../hooks/useTheme";
 import { createApiResponse } from "./apiRouter";

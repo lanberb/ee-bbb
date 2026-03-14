@@ -1,12 +1,12 @@
 import { Global } from "@emotion/react";
 import type { FC } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Page as BlogPage } from "../features/blog/Page";
-import { Page as TopPage } from "../features/top/Page";
-import { GlobalCanvas } from "../modules/GlobalCanvas";
-import { GlobalFootprintDialog } from "../modules/GlobalFootprintDialog";
-import { GlobalNavigation } from "../modules/GlobalNavigation";
-import { createGlobalStyles } from "../styles/globalStyles";
+import { createGlobalStyles } from "../../styles/globalStyles";
+import { Page as BlogPage } from "../blog/Page";
+import { Page as TopPage } from "../top/Page";
+import { GlobalCanvas } from "./components/GlobalCanvas";
+import { GlobalFootprintDialog } from "./components/GlobalFootprintDialog";
+import { GlobalNavigation } from "./components/GlobalNavigation";
 import { SvgResourceArea } from "./SvgResourceArea";
 
 export const App: FC = () => {
